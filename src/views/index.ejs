@@ -1,0 +1,42 @@
+<%- include('includes/heade.ejs') %>
+<%- include('includes/nav.ejs') %>
+
+<div class="" style="margin-left: 150px; margin-right: 150px; margin-top: 100px; background-color: white;">
+  <div class="row">
+    <!-- <div class="col-lg-2"></div> -->
+    <div class="col-lg-12 my-3">
+        <h1 class="text-center">Agenda</h1>
+        <p class="text-center lead">Seus contactos estão abaixo</p>
+
+        <%-include('includes/message.ejs')  %>
+
+        <% if(contactos.length > 0){ %>
+
+          <div class="table-responsive">
+            <table class="table my-3">
+              <% contactos.forEach(contacto => { %>
+                <tr>
+                  <td><%= contacto.nome  %></td>
+                  <td><%= contacto.sobrenome  %></td>
+                  <td><%= contacto.telefone  %></td>
+                  <td><%= contacto.email  %></td>
+                  <td>
+                      <a href="/contacto/index/<%= contacto._id  %>">Editar</a>
+                      <a class="text-danger" href="/contacto/delete/<%= contacto._id  %>">Delete</a>
+                  </td>
+                </tr>
+              <% }); %>
+            </table>
+          </div>
+
+        <% }else{ %>
+
+          <p class="alert danger">Não existe dados dos contactos</p>  
+        <% } %>
+
+    </div>
+    <!-- <div class="col-lg-2"></div> -->
+  </div>
+</div>
+
+<%- include('includes/footer.ejs') %>
